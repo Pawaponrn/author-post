@@ -1,0 +1,32 @@
+<div class="container">
+    <section>
+        <h1>MAQE Forum</h1>
+        <p>Your current timezone is: {{timezone}}</p>
+    </section>
+    <section>
+        <ng-container *ngIf="postWithAuthorList.length; else noData">
+            <p-card *ngFor="let post of postWithAuthorList">
+                <div class="card">
+                    <div *ngIf="post.author" class="author">
+                        <img class="avatar" [src]="post.author.avatar_url" alt="Author">
+                        <p class="fullname">{{post.author.name}}</p>
+                        <p class="post-timestamp">posted on {{post.created_at | date: 'EEEE, MMM d, YYYY, HH:mm'}}</p>
+                    </div>
+                    
+                    <hr>
+            
+                    <div class="post">
+                        <img [src]="post.image_url" alt="">
+                        <div class="article">
+                            <h3>{{post.title}}</h3>
+                            <p>{{post.body}}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </p-card>
+        </ng-container>
+        <ng-template #noData>No data founds</ng-template>
+    </section>
+</div>
